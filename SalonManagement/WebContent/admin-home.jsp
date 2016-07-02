@@ -22,6 +22,7 @@
                           <div class="center">
                               <img src="./img/logo.png" class="circle" style="width: 100%; height: 100%; margin-top: 40px; margin-bottom: 20px;">
                             </div>
+
                           <li><a href="admin-home.jsp" class="waves-effect"><b>Home</b></a></li>
                          <!--  <li class="no-padding"> -->
                             <ul class="collapsible" data-collapsible="accordion">
@@ -45,7 +46,7 @@
                                   <div class="collapsible-body">
                                     <ul>
                                       <li><a href="getInventory">Inventory</a></li>
-                                      <li><a href="reservation/Transaction">Reservation</a></li>
+                                      <li><a href="transactions-reservation.jsp">Reservation</a></li>
                                       <li><a href="transactions-productorder.jsp">Product Order</a></li>
                                       <li><a href="transactions-vip.jsp">VIP</a></li>
                                       <li><a href="transactions-walkin.jsp">Walk In</a></li>
@@ -55,8 +56,7 @@
                             </ul>
                           <li><a href="utilities.jsp" class="waves-effect"><b>Utilities</b></a></li>
                         </ul>
-
-                
+                          
                        <nav class="z-depth-0">
                          <div class="nav-wrapper purple darken-4">
                            <a href="#!" class="brand-logo purple-text text-lighten-5" style="margin-left: 30px;">Salon Management System</a>
@@ -103,6 +103,11 @@
                     <button id="welcome" class="btn waves-effect waves-light purple darken-3 animated infinite rubberBand z-depth-3" style="width: 300px; height: 150px;font-size: 30px;">WELCOME</button>
                   </div>
                 </div>
+                
+                
+                  <div class="col s12 center" style="margin-top: 200px;">
+                    <h3>${ sessionScope.firstName } ${ sessionScope.lastName }, your is ${ sessionScope.id }</h3>
+                  </div>
 
         <!-- <article>
           <div class="wrapper">

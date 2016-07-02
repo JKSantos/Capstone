@@ -12,8 +12,8 @@ public class LocationMaintenanceAction {
 	public String execute(){
 		
 		LocationService service = new LocationServiceImpl();
-		
 		this.locationList = service.getAllLocation();
+		
 		return "success";
 	}
 
@@ -24,4 +24,5 @@ public class LocationMaintenanceAction {
 	public void setLocationList(List<Location> locationList) {
 		this.locationList = locationList;
 	}
+	
 }

@@ -11,9 +11,11 @@ public class Promo {
 	private int intMaxHeadCount;
 	private List<ServicePackage> serviceList;
 	private List<ProductPackage> productList;
+	private List<PackagePackage> packageList;
 	private String strPromoAvailability;
+	private int intStatus;
 	
-	public Promo(int intPromoID, String strPromoName, String strPromoDescription, double dblPromoPrice, int intMaxHeadCount, List<ServicePackage> serviceList, List<ProductPackage> productList, String strPromoAvailability){
+	public Promo(int intPromoID, String strPromoName, String strPromoDescription, double dblPromoPrice, int intMaxHeadCount, List<ServicePackage> serviceList, List<ProductPackage> productList, List<PackagePackage> packageList, String strPromoAvailability, int intStatus){
 		
 		this.intPromoID = intPromoID;
 		this.strPromoName = strPromoName;
@@ -22,6 +24,7 @@ public class Promo {
 		this.intMaxHeadCount = intMaxHeadCount;
 		this.serviceList = serviceList;
 		this.productList = productList;
+		this.packageList = packageList;
 		this.setStrPromoAvailability(strPromoAvailability);
 	}
 
@@ -87,6 +90,22 @@ public class Promo {
 
 	public void setIntMaxHeadCount(int intMaxHeadCount) {
 		this.intMaxHeadCount = intMaxHeadCount;
+	}
+
+	public List<PackagePackage> getPackageList() {
+		return packageList;
+	}
+
+	public void setPackageList(List<PackagePackage> packageList) {
+		this.packageList = packageList;
+	}
+
+	public int getIntStatus() {
+		return intStatus;
+	}
+
+	public void setIntStatus(int intStatus) {
+		this.intStatus = intStatus;
 	}
 
 

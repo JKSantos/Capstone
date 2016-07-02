@@ -13,6 +13,8 @@
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" type="image/png" href="img/Salon_Icon.ico" />
+    <title>Walk-In</title>
   </head>
 
   <body class="blue-grey lighten-5">
@@ -31,7 +33,7 @@
                                     <ul>
                                       <li><a href="employeeMaintenance">Employee</a></li>
                                       <li><a href="productServiceMaintenance">Product & Service</a></li>
-                                      <li><a href="catalogueMaintenance">Catalogue</a></li>
+                            
                                       <li><a href="packageMaintenance">Package</a></li>
                                       <li><a href="locationMaintenance">Delivery Charge</a></li>
                                       <li><a href="extraChargeMaintenance">Other Charge</a></li>
@@ -47,8 +49,7 @@
                                       <li><a href="transactions-inventory.jsp">Inventory</a></li>
                                       <li><a href="transactions-reservation.jsp">Reservation</a></li>
                                       <li><a href="transactions-productorder.jsp">Product Order</a></li>
-                                      <li><a href="transactions-vip.jsp">Payment</a></li>
-                                      <li class="purple lighten-4"><a href="transactions-walkin.jsp">Walk In</a></li>
+                                                  <li class="purple lighten-4"><a href="transactions-walkin.jsp">Walk In</a></li>
                                     </ul>
                                   </div>
                               </li>
@@ -109,7 +110,7 @@
                                          <tr>
                                              <th><center>Guest Type</center></th>
                                              <th><center>Date</center></th>
-                                             <th><center>Time</center></th>
+                                             <th><center>Status</center></th>
                                              <th><center>Action</center></th>
                                          </tr>
                                      </thead>
@@ -129,106 +130,63 @@
                            </div>                    
                         </div>
 
-                        <div id="createwalkin" class="modal modal-fixed-footer" style="width: 80% !important; height: 83% !important; max-height: 100% !important;">
+                        <div id="createwalkin" class="modal modal-fixed-footer" style="width: 50% !important; height: 83% !important; max-height: 100% !important;">
                           <form class="col s12" name="createWalkinForm" method="post" action="createTag">
                               <div class="modal-content">
                                 <div class="wrapper">
                                   <h4 class="grey-text text-darken-1"><center>Create Walk-in</center></h4>
                                   <div class="aside asideA z-depth-0">
                                     <div class="row">
-                                      <div class="input-field col s4">
-                                        <select class="multiple" id="walkingt">
-                                          <option selected disabled>Guest Type...</option>
-                                        </select>
-                                        <label for="walkingt">Guest Type</label>
+                                      <div class="input-field col s12" style="margin-top: 4px;">
+                                        <input type="text" id="yo">
+                                        <label for="yo">Name</label>
                                       </div>
-                                      <div class="input-field col s8">
-                                        <input type="text" id="walkincn">
-                                        <label class="active" for="walkincn">Company Name</label>
+                                       <div class="input-field col s12" style="margin-top: 4px;">
+                                        <input type="number" id="yo">
+                                        <label for="yo">Contact Number</label>
                                       </div>
                                       <div class="input-field col s12" style="margin-top: 4px;">
                                         <select class="multiple" id="walkinsa">
-                                          <option selected disabled>Stylist Assigned...</option>
+                                          <option >Jenny</option>
+                                          <option >Brenda</option>
+                                          <option >Wanda</option>
                                         </select>
                                         <label for="walkinsa">Stylist Assigned</label>
                                       </div> 
-                                      <div class="input-field col s6" style="margin-top: 4px;">
+                                      <div class="input-field col s12" style="margin-top: 4px;">
                                         <select class="multiple" id="walkinpackage">
                                           <option selected disabled>Packages...</option>
                                         </select>
                                         <label for="walkinpackage">Package</label>
                                       </div>
-                                      <div class="input-field col s3" style="margin-top: 4px;">
-                                        <input type="number" min="0" id="walkinqty1">
-                                        <label class="active" for="walkinqty1">Quantity</label>
-                                      </div>
-                                      <div class="input-field col s3" style="margin-top: 4px;">
-                                        <button class="waves-effect waves-light purple white-text btn-flat"><i class="material-icons">add</i></button>
-                                      </div>
-                                      <div class="input-field col s6" style="margin-top: 4px;">
+                                   
+                                      <div class="input-field col s12" style="margin-top: 4px;">
                                         <select class="multiple" id="walkinservice">
                                           <option selected disabled>Services...</option>
                                         </select>
                                         <label for="walkinpackage">Service</label>
                                       </div>
-                                      <div class="input-field col s3" style="margin-top: 4px;">
-                                        <input type="number" min="0" id="walkinqty2">
-                                        <label class="active" for="walkinqty2">Quantity</label>
-                                      </div>
-                                      <div class="input-field col s3" style="margin-top: 4px;">
-                                        <button class="waves-effect waves-light purple white-text btn-flat"><i class="material-icons">add</i></button>
-                                      </div>
-                                      <div class="input-field col s6" style="margin-top: 4px;">
+                                     
+                                   
+                                      <div class="input-field col s12" style="margin-top: 4px;">
                                         <select class="multiple" id="walkinpromo">
                                           <option selected disabled>Promos...</option>
                                         </select>
                                         <label for="walkinpromo">Promo</label>
                                       </div>
-                                      <div class="input-field col s3" style="margin-top: 4px;">
-                                        <input type="number" min="0" id="walkinqty3">
-                                        <label class="active" for="walkinqty3">Quantity</label>
-                                      </div>
-                                      <div class="input-field col s3" style="margin-top: 4px;">
-                                        <button class="waves-effect waves-light purple white-text btn-flat"><i class="material-icons">add</i></button>
-                                      </div>
-                                      <div class="input-field col s6" style="margin-top: 4px;">
+                                    
+                                      <div class="input-field col s12" style="margin-top: 4px;">
                                         <select class="multiple" id="walkinproduct">
                                           <option selected disabled>Products...</option>
                                         </select>
                                         <label for="walkinproduct">Product</label>
                                       </div>
-                                      <div class="input-field col s3" style="margin-top: 4px;">
-                                        <input type="number" min="0" id="walkinqty4">
-                                        <label class="active" for="walkinqty4">Quantity</label>
-                                      </div>
-                                      <div class="input-field col s3" style="margin-top: 4px;">
-                                        <button class="waves-effect waves-light purple white-text btn-flat"><i class="material-icons">add</i></button>
-                                      </div>
+                                      
+                                     
                                     </div>
                                   </div>
 
-                                  <div class="aside asideB z-depth-0">
-                                    <div class="row">
-                                      <table>
-                                        <thead>
-                                          <tr>
-                                            <th>Item Name</th>
-                                            <th>Quantity</th>
-                                            <th>Price</th>
-                                            <th>Action</th>
-                                          </tr>
-                                        </thead>          
-                                      </table>
-                                      <div class="input-field col s4" style="margin-top: 250px !important;">
-                                          <input type="number" id="walkinta" value="" disabled min="0" class="black-text" style="color: black;">
-                                          <label for="walkinta" class="active black-text">Total Amount</label>
-                                      </div>  
-                                      <div class="input-field col s4" style="margin-top: 250px !important;">
-                                        <input type="number" id="walkinpa" min="0">
-                                        <label for="walkinpa" class="active">Payment Amount</label>
-                                      </div>                               
-                                    </div>
-                                  </div>
+                    
                                 </div>
                               </div>
                               <div class="modal-footer">
@@ -239,7 +197,7 @@
                         </div>
 
 
-                        <div id="updatewalkin" class="modal modal-fixed-footer" style="width: 80% !important; height: 83% !important; max-height: 100% !important;">
+                        <div id="updatewalkin" class="modal modal-fixed-footer" style="width: 50% !important; height: 83% !important; max-height: 100% !important;">
                           <form class="col s12" name="updateWalkinForm" method="post" action="createTag">
                               <div class="modal-content">
                                 <div class="wrapper">
@@ -348,6 +306,46 @@
                           </form>
                         </div>
 
+                         <div id="viewwalkin" class="modal modal-fixed-footer" style="width: 50% !important; height: 83% !important; max-height: 100% !important;">
+                          <form class="col s12" name="" method="post" action="">
+                              <div class="modal-content">
+                                <div class="wrapper">
+                                  <h4 class="thin"><center>Job Status</center></h4>
+                                  <div class="z-depth-0">
+                                    <div class="row">
+                                      <h4 class="thin">Services</h4>
+                                      <h4>
+                                        <input type="checkbox" id="test5" />
+                                        <label for="test5">Junior cut</label>
+                                      </h4>
+                                      <h4>
+                                        <input type="checkbox" id="test4" />
+                                        <label for="test4">Foot spa</label>
+                                      </h4>
+                                      <h4>
+                                        <input type="checkbox" id="test3" />
+                                        <label for="test3">Facial</label>
+                                      </h4>
+
+                                      <div class="input-field col s12">
+                                          <input type="number" id="upwalkinta" value="" disabled min="0" class="black-text" style="color: black;">
+                                          <label for="upwalkinta" class="active black-text">Total Amount</label>
+                                      </div>  
+                                      <div class="input-field col s12">
+                                        <input type="number" id="upwalkinpa" min="0">
+                                        <label for="upwalkinpa" class="active">Payment Amount</label>
+                                      </div> 
+                                    </div>
+                                  </div>           
+                              
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="submit" class="waves-effect waves-white btn-flat purple white-text">CHECK OUT</button>
+                                <a href="#!" class="modal-action modal-close waves-effect waves-purple btn-flat ">CANCEL</a>
+                              </div>
+                          </form>
+                        </div>
 
         </article>
            <!-- Modal Structure -->

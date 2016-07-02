@@ -15,6 +15,8 @@
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" type="image/png" href="img/Salon_Icon.ico" />
+    <title>Delivery Charges</title>
   </head>
 
   <body class="purple lighten-5">
@@ -33,7 +35,7 @@
                             <ul>
                               <li><a href="employeeMaintenance">Employee</a></li>
                               <li><a href="productServiceMaintenance">Product & Service</a></li>
-                              <li><a href="catalogueMaintenance">Catalogue</a></li>
+                        
                               <li><a href="packageMaintenance">Package</a></li>
                               <li class="purple lighten-4"><a href="locationMaintenance">Delivery Charge</a></li>
                               <li><a href="extraChargeMaintenance">Other Charge</a></li>
@@ -49,7 +51,7 @@
                               <li><a href="transactions-inventory.jsp">Inventory</a></li>
                               <li><a href="transactions-reservation.jsp">Reservation</a></li>
                               <li><a href="transactions-productorder.jsp">Product Order</a></li>
-                              <li><a href="transactions-vip.jsp">VIP</a></li>
+                      
                               <li><a href="transactions-walkin.jsp">Walk In</a></li>
                               </ul>
                           </div>
@@ -169,11 +171,16 @@
                                             <div class="input-field col s12" style="margin-top: 25px;">
                                                 <input type="text" class="validate tooltipped specialname" id="createLocationName"
                                                 name="strLocationName" required pattern="^[a-zA-Z\-.\s]{5,}$" minlength="5" maxlength="15" data-delay="30" data-position="bottom" data-tooltip="Ex: Sta. Mesa<br/>( At least 5 or more characters )" placeholder="LocationName">
-                                                <label for="createLocationName" class="active">Location Name<span class="red-text">*</span></label>
+                                                <label for="createLocationName" class="active">Barangay<span class="red-text">*</span></label>
+                                            </div>
+                                            <div class="input-field col s12" style="margin-top: 25px;">
+                                                <input type="text" class="validate tooltipped specialname" id="createLocationName"
+                                                name="strLocationName" required pattern="^[a-zA-Z\-.\s]{5,}$" minlength="5" maxlength="15" data-delay="30" data-position="bottom" data-tooltip="Ex: Sta. Mesa<br/>( At least 5 or more characters )" placeholder="LocationName">
+                                                <label for="createLocationName" class="active">City<span class="red-text">*</span></label>
                                             </div>
                                             <div class="input-field col s6">
                                                 <input id="createEChargeDesc" name="dblLocationPrice" class="materialize-textarea tooltipped" maxlength="15" required minlength="1" data-delay="30" data-position="bottom" data-tooltip="Base Price" placeholder="Price">
-                                                <label for="createEChargeDesc" class="active">Price<span class="red-text">*</span></label>
+                                                <label for="createEChargeDesc" class="active">Base rate<span class="red-text">*</span></label>
                                             </div>
                                     </div>
                               </div>

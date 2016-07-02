@@ -4,6 +4,11 @@
   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
   <%@ page import="com.gss.model.Product"%>
   <%@ page import="com.gss.model.Service"%>
+  <%@ page import="com.gss.model.Package"%>
+  <%@ page import="java.util.List" %>
+  <%@ page import="com.gss.model.ProductPackage"%>
+  <%@ page import="com.gss.model.ServicePackage"%>
+  <%@ page import="com.gss.model.PackagePackage"%>
   <%@ page import="com.gss.model.Promo"%>
 
   <head>
@@ -16,6 +21,8 @@
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" type="image/png" href="img/Salon_Icon.ico" />
+    <title>Promos</title>
   </head>
 
   <body class="purple lighten-5">
@@ -34,7 +41,7 @@
                             <ul>
                               <li><a href="employeeMaintenance">Employee</a></li>
                               <li><a href="productServiceMaintenance">Product & Service</a></li>
-                              <li><a href="catalogueMaintenance">Catalogue</a></li>
+                     
                               <li><a href="packageMaintenance">Package</a></li>
                               <li><a href="locationMaintenance">Delivery Charge</a></li>
                               <li><a href="extraChargeMaintenance">Other Charge</a></li>
@@ -49,7 +56,7 @@
                             <ul>
                               <li><a href="transactions-inventory.jsp">Inventory</a></li>
                               <li><a href="transactions-reservation.jsp">Reservation</a></li>
-                              <li><a href="transactions-vip.jsp">VIP</a></li>
+     
                               <li><a href="transactions-productorder.jsp">Product Order</a></li>
                               <li><a href="transactions-walkin.jsp">Walk-In</a></li>
                             </ul>
@@ -139,8 +146,8 @@
                                       <td style="padding:0; margin:0;"><center>Php ${promo.dblPromoPrice}</center></td>
                                       <td style="padding:0; margin:0;"><center>${promo.strPromoAvailability}</center></td>
                                       <td class="center" style="padding:0; margin:0;"><button data-target="viewProdSvc" class="waves-effect waves-purple modal-view btn-flat transparent" style="padding-left: 10px;padding-right:10px; margin: 5px;"><i class="material-icons">visibility</i></button>
-                                      <a class="waves-effect waves-purple modal-trigger btn-flat transparent black-text" title="Update" href="#update" style="padding-left: 10px;padding-right:10px; margin: 5px;"><i class="material-icons">edit</i></a>
-                                      <a class="waves-effect waves-purple modal-trigger btn-flat transparent red-text text-accent-4" href="#delete" title="Deactivate" style="padding-left: 10px;padding-right:10px; margin: 5px;"><i class="material-icons">delete</i></a>
+                                      <a class="waves-effect waves-purple modal-trigger btn-flat transparent black-text" title="Update" href="#update${promo.intPromoID}" style="padding-left: 10px;padding-right:10px; margin: 5px;"><i class="material-icons">edit</i></a>
+                                      <a class="waves-effect waves-purple modal-trigger btn-flat transparent red-text text-accent-4" href="#delete${promo.intPromoID}" title="Deactivate" style="padding-left: 10px;padding-right:10px; margin: 5px;"><i class="material-icons">delete</i></a>
                                       </td>
                                   </tr>
                                 </c:forEach>                                  
@@ -233,62 +240,80 @@
                                   </div>
                                   <div class="aside aside2 z-depth-barts" style="padding: 10px;">
                                       <div class="row">
-                                        <!-- service -->
-                                          <h5 class="grey-text text-darken-1">Included Service/s and Product/s</h5>
-                                          <div class="input-field col s8">
-                                              <p style="color:#9e9e9e;font-size:12px;">Service </p>
-                                          </div>
-                                          <div class="input-field col s6" style="margin-top: -1px;">
-                                              <select class="browser-default fillthree" id="promoService">
-                                                    <option value="Choose..." disabled selected>Choose</option>
-                                                    <c:forEach items="${serviceList}" var="service">
-                                                      <option value="${service.strServiceName}">${service.strServiceName}</option>
-                                                    </c:forEach>
-                                                </select>
-                                          </div>
-                                          <div class="input-field col s3" style="margin-top: -1px;">
-                                              <input type="number" id="promoServiceQty" name="promoServiceQty" class="validate" min="0">
-                                              <label for="promoServiceQty">Qty</label>
-                                          </div>
-                                          <div class="input-field col s3 left-align" style="margin-top: -1px;">
-                                              <a class="waves-effect waves-light btn-flat purple" id="promoAddSvc" onclick="addServPromo()"><i class="material-icons white-text">add</i></a>
-                                          </div>
-                                          <!--product  -->
-                                          <div class="input-field col s8">
-                                              <p style="color:#9e9e9e;font-size:12px;">Product </p>
-                                          </div>
-                                          <div class="input-field col s6" style="margin-top: -1px;">
-                                              <select class="browser-default fillthree" id="promoProduct">
-                                                    <option value="Choose..." disabled selected>Choose</option>
-                                                    <c:forEach items="${productList}" var="product">
-                                                      <option value="${product.strProductName}">${product.strProductName}</option>
-                                                    </c:forEach>
-                                                </select>
-                                          </div>
-                                          <div class="input-field col s3" style="margin-top: -1px;">
-                                              <input type="number" id="promoProductQty" name="promoServiceQty" class="validate" min="0">
-                                              <label for="promoProductQty">Qty</label>
-                                          </div>
-                                          <div class="input-field col s3 left-align" style="margin-top: -1px;">
-                                              <a class="waves-effect waves-light btn-flat purple" onclick="addProdPromo()"><i class="material-icons white-text">add</i></a>
-                                          </div>
-                                        <!-- end -->
-                                        <!-- start table -->
-                                          <div class="input-field col s12">
-                                          <table class="centered">
-                                            <thead>
-                                              <tr>
-                                                <th>Name</th>
-                                                <th>Qty</th>
-                                                <th>Action</th>
-                                              </tr>
-                                            </thead>
-                                            <table class="highlight centered responsive-table" id="promoTable">
-                                            </table>
-                                            </table>
+                                        <h5 class="grey-text text-darken-1">Included Service/s and Product/s</h5>
+                                        <ul class="collapsible" data-collapsible="accordion">
+                                            <li>
+                                              <div class="collapsible-header"><i class="material-icons">list</i>Services</div>
+                                              <div class="collapsible-body">
+                                                <div class="highlight centered responsive-table">
+                                                  <table class="centered striped services">
+                                                    <thead>
+                                                        <th>Select</th>
+                                                        <th>Name</th>
+                                                        <th>Price</th>
+                                                        <th>Quantity</th>
+                                                    </thead>
+                                                      <c:forEach items="${serviceList}" var="service"> 
+                                                        <tr>
+                                                          <td><input type="checkbox" name="servicePromoSelect" id="myCheckBox${service.intServiceID}" value="${service.intServiceID}"><label for="myCheckBox${service.intServiceID}"></label></td>
+                                                          <td>${service.strServiceName}</td>
+                                                          <td>${service.dblServicePrice}</td>
+                                                          <td><input type="number" name="servicePromoQty" style="width: 75px" min="1" max="99" value="1"></td>
+                                                        </tr>
+                                                      </c:forEach>
+                                                  </table>  
+                                                </div>
+                                              </div>
+                                            </li>
                                             
-                                          </div>
-                                        <!-- end table -->
+                                            <li>
+                                              <div class="collapsible-header"><i class="material-icons">list</i>Products</div>
+                                                <div class="collapsible-body">
+                                                  <div class="highlight centered responsive-table">
+                                                    <table class="centered striped services">
+                                                      <thead>
+                                                          <th>Select</th>
+                                                         <th>Name</th>
+                                                          <th>Price</th>
+                                                         <th>Quantity</th>
+                                                      </thead>
+                                                       <c:forEach items="${productList}" var="products"> 
+                                                         <tr>
+                                                           <td><input type="checkbox" name="productPromoSelect" id="prodCheck${products.intProductID}" value="${products.intProductID}"><label for="prodCheck${products.intProductID}"></label></td>
+                                                           <td>${products.strProductName}</td>
+                                                           <td>${products.dblProductPrice}</td>
+                                                           <td><input type="number" name="productPromoQty" style="width: 75px" min="1" max="99" value="1"></td>
+                                                         </tr>
+                                                        </c:forEach>
+                                                    </table>  
+                                                  </div>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                              <div class="collapsible-header"><i class="material-icons">list</i>Packages</div>
+                                                <div class="collapsible-body">
+                                                  <div class="highlight centered responsive-table">
+                                                    <table class="centered striped services">
+                                                      <thead>
+                                                          <th>Select</th>
+                                                         <th>Name</th>
+                                                          <th>Price</th>
+                                                         <th>Quantity</th>
+                                                      </thead>
+                                                       <c:forEach items="${packageList}" var="pack"> 
+                                                         <tr>
+                                                           <td><input type="checkbox" name="packagePromoSelect" id="promoPack${pack.intPackageID}" value="${pack.intPackageID}"><label for="promoPack${pack.intPackageID}"></label></td>
+                                                           <td>${pack.strPackageName}</td>
+                                                           <td>${pack.dblPackagePrice}</td>
+                                                           <td><input type="number" name="packagePromoQty" style="width: 75px" min="1" max="99" value="1"></td>
+                                                         </tr>
+                                                        </c:forEach>
+                                                    </table>  
+                                                  </div>
+                                                </div>
+                                            </li>
+                                          </ul>
                                       </div>
                                   </div>
                               </div>
@@ -300,8 +325,9 @@
                           </form>
                     </div>
 
-                        <div id="update" class="modal modal-fixed-footer">
-                        <form class="col s12">
+                      <c:forEach items="${promoList}" var="promo">
+                        <div id="update${promo.intPromoID}" class="modal modal-fixed-footer" style="width: 75% !important; height: 80% !important; max-height: 100% !important;">
+                        <form class="col s12" method="post" action="updatePromo">
                           <div class="modal-content">
                             <!-- <div class="container"> -->
                               <div class="wrapper">
@@ -314,86 +340,182 @@
                                             </div>
                                             <div class="input-field col s6">
                                             <p class="center">
-                                              <input type="checkbox" class="filled-in" id="updateNonExpiry">
-                                              <label for="updateNonExpiry">Non-Expiry</label>
+                                              <input name="strNonExp" type="checkbox" class="filled-in" id="updateNonExpiry${promo.intPromoID}">
+                                              <label for="updateNonExpiry${promo.intPromoID}">Non-Expiry</label>
                                             </p>
                                             </div>
                                             <div class="input-field col s6">
-                                                 <input type="date" class="datepicker-promo" id="updatePromoEnd" placeholder="Expiration"/>
+                                                 <input name="strExp" type="date" class="datepicker-promo" id="updatePromoEnd" placeholder="Expiration"/>
                                             </div>
                                             <div class="input-field col s12">
-                                                <input type="text" class="validate" id="updatePromoName" required>
+                                                <input name="strPromoName" type="text" class="validate" id="updatePromoName" value="${promo.strPromoName}" required>
                                                 <label for="updatePromoName">Promo Name</label>
                                             </div>
+
+                                    <!-- <<<<<<<< DO NOT ALTER >>>>>>>>>-->
+                                            <input type="hidden" name="intPromoID" value="${promo.intPromoID}">
+                                    <!-- <<<<<<<<< DO NOT ALTER >>>>>>>>>-->
+
                                             <div class="input-field col s12">
-                                                <textarea id="updatePromoDetails" class="materialize-textarea" length="120"></textarea>
+                                                <textarea name="strPromoDesc" id="updatePromoDetails" class="materialize-textarea" length="120">${promo.strPromoDescription}</textarea>
                                                 <label for="updatePromoDetails">Description</label>
                                             </div>
-                                            
+                                            <%
+                                                Promo promo = (Promo)pageContext.getAttribute("promo");
+                                                double promoPrice = promo.getDblPromoPrice();
+                                                String free = "";
+                                                String price = "";
+
+                                                if(promo.getDblPromoPrice() == 0){
+                                                    free = "checked";
+                                                }
+                                              
+                                            %>
                                             <div class="input-field col s5">
                                             <p class="center">
-                                                <input type="checkbox" class="filled-in" id="updatePromoFree"/>
-                                                <label for="updatePromoFree">Free</label>
+                                                <input name="strFree" type="checkbox" class="filled-in" id="updatePromoFree${promo.intPromoID}" <%out.println(free);%>/>
+                                                <label for="updatePromoFree${promo.intPromoID}">Free</label>
                                             </p>
                                             </div>
                                             <div class="input-field col s6 offset-s1">
-                                                <input type="text" class="validate right-align" id="updatePromoPrice" maxlength="8">
+                                                <input name="dblPromoPrice" type="text" class="validate right-align" id="updatePromoPrice" maxlength="8" value="${promo.dblPromoPrice}">
                                                 <label for="updatePromoPrice">Promo Price</label>
                                             </div>
                                     </div>
                                   </div>
                                   <div class="aside aside2 z-depth-barts" style="padding: 10px;">
                                       <div class="row">
-                                        <!-- service -->
-                                          <h5 class="grey-text text-darken-1">Service/s and Product/s Included </h5>
-                                          <div class="input-field col s8">
-                                              <p style="color:#9e9e9e;font-size:12px;">Service </p>
-                                          </div>
-                                          <div class="input-field col s6" style="margin-top: -1px;">
-                                              <select class="browser-default" id="updatePromoService">
-                                                    <option value="Choose..." disabled selected>Choose</option>
-                                                </select>
-                                          </div>
-                                          <div class="input-field col s3" style="margin-top: -1px;">
-                                              <input type="number" id="updatePromoSQty" name="updatePromoSQty" class="validate" min="0">
-                                              <label for="updatePromoSQty">Qty</label>
-                                          </div>
-                                          <div class="input-field col s3 left-align" style="margin-top: -1px;">
-                                              <a class="waves-effect waves-light btn-flat purple" id="updatePromoAddSvc" onclick="updateServPromo()"><i class="material-icons">add</i></a>
-                                          </div>
-                                          <!--product  -->
-                                          <div class="input-field col s8">
-                                              <p style="color:#9e9e9e;font-size:12px;">Product </p>
-                                          </div>
-                                          <div class="input-field col s6" style="margin-top: -1px;">
-                                              <select class="browser-default" id="updatePromoProduct">
-                                                    <option value="Choose..." disabled selected>Choose</option>
-                                                </select>
-                                          </div>
-                                          <div class="input-field col s3" style="margin-top: -1px;">
-                                              <input type="number" id="updatePromoPQty" name="updatePromoPQty" class="validate" min="0">
-                                              <label for="updatePromoPQty">Qty</label>
-                                          </div>
-                                          <div class="input-field col s3 left-align" style="margin-top: -1px;">
-                                              <a class="waves-effect waves-light btn-flat purple" id="updatePromoaddProd" onclick="updateProdPromo()"><i class="material-icons">add</i></a>
-                                          </div>
-                                        <!-- end -->
-                                        <!-- start table -->
-                                          <div class="input-field col s12">
-                                          <table class="centered">
-                                            <thead>
-                                              <tr>
-                                                <th>Name</th>
-                                                <th>Qty</th>
-                                                <th>Action</th>
-                                              </tr>
-                                            </thead>
-                                            <table class="highlight centered responsive-table" id="updatePromoTable">
-                                            </table>
-                                            </table>
+                                        <h5 class="grey-text text-darken-1">Included Service/s and Product/s</h5>
+                                        <ul class="collapsible popout" data-collapsible="accordion">
+                                            <li>
+                                              <div class="collapsible-header"><i class="material-icons">list</i>Services</div>
+                                              <div class="collapsible-body">
+                                                <div class="highlight centered responsive-table">
+                                                  <table class="centered striped services">
+                                                    <thead>
+                                                        <th>Select</th>
+                                                        <th>Name</th>
+                                                        <th>Price</th>
+                                                        <th>Quantity</th>
+                                                    </thead>
+                                                      <c:forEach items="${serviceList}" var="service">
+                                                      <%
+                                                              String servChecked = "";
+                                                              
+                                                              int servQuantity = 1;
+                                                              Service service = (Service)pageContext.getAttribute("service");
+                                                              Promo servicePackage = (Promo)pageContext.getAttribute("promo");
+                                                              List<ServicePackage> servicePack = servicePackage.getServiceList();
+
+                                                              int serviceID = service.getIntServiceID();
+    
+ 
+                                                               for(int intCtr = 0; intCtr < servicePack.size(); intCtr++){
+                                                                
+                                                                  if(servicePack.get(intCtr).getService().getIntServiceID() == service.getIntServiceID()){
+                                                                    servChecked = "checked";
+                                                                    servQuantity = servicePack.get(intCtr).getIntQuantity();
+                                                                      break;
+                                                                  }
+                                                                  else
+                                                                    continue;
+
+                                                              }
+                                                         %>
+                                                        <tr>
+                                                          <td><input type="checkbox" name="servicePromoSelect" id="myCheckBox${service.intServiceID}${promo.intPromoID}" value="${service.intServiceID}" <%out.println(servChecked);%>><label for="myCheckBox${service.intServiceID}${promo.intPromoID}"></label></td>
+                                                          <td>${service.strServiceName}</td>
+                                                          <td>${service.dblServicePrice}</td>
+                                                          <td><input type="number" name="servicePromoQty" style="width: 75px" min="1" max="99" value="<%=servQuantity%>"></td>
+                                                        </tr>
+                                                      </c:forEach>
+                                                  </table>  
+                                                </div>
+                                              </div>
+                                            </li>
                                             
-                                          </div>
-                                        <!-- end table -->
+                                            <li>
+                                              <div class="collapsible-header"><i class="material-icons">list</i>Products</div>
+                                                <div class="collapsible-body">
+                                                  <div class="highlight centered responsive-table">
+                                                    <table class="centered striped services">
+                                                      <thead>
+                                                          <th>Select</th>
+                                                         <th>Name</th>
+                                                          <th>Price</th>
+                                                         <th>Quantity</th>
+                                                      </thead>
+                                                       <c:forEach items="${productList}" var="products"> 
+                                                          <%
+                                                              String prodChecked = "";
+                                                              int prodQuantity = 1;
+                                                              Product product = (Product)pageContext.getAttribute("products");
+                                                              Promo productPromo = (Promo)pageContext.getAttribute("promo");
+                                                              List<ProductPackage> productPack = productPromo.getProductList();             
+                                                              
+                                                              for(int intCtr = 0; intCtr < productPack.size(); intCtr++){
+                                                                  if(productPack.get(intCtr).getProduct().getIntProductID() == product.getIntProductID()){
+                                                                    prodChecked = "checked";
+                                                                    prodQuantity = productPack.get(intCtr).getIntProductQuantity();
+                                                                      break;
+                                                                  }
+                                                                  else
+                                                                    continue;
+                                                              }
+                                                          %>
+                                                         <tr>
+                                                           <td><input type="checkbox" name="productPromoSelect" id="prodCheck${products.intProductID}${promo.intPromoID}" value="${products.intProductID}" <%out.println(prodChecked);%>><label for="prodCheck${products.intProductID}${promo.intPromoID}"></label></td>
+                                                           <td>${products.strProductName}</td>
+                                                           <td>${products.dblProductPrice}</td>
+                                                           <td><input type="number" name="productPromoQty" style="width: 75px" min="1" max="99" value="<%=prodQuantity%>"></td>
+                                                         </tr>
+                                                        </c:forEach>
+                                                    </table>  
+                                                  </div>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                              <div class="collapsible-header"><i class="material-icons">list</i>Packages</div>
+                                                <div class="collapsible-body">
+                                                  <div class="highlight centered responsive-table">
+                                                    <table class="centered striped services">
+                                                      <thead>
+                                                          <th>Select</th>
+                                                         <th>Name</th>
+                                                          <th>Price</th>
+                                                         <th>Quantity</th>
+                                                      </thead>
+                                                       <c:forEach items="${packageList}" var="pack"> 
+                                                          <%
+                                                              String packChecked = "";
+                                                              int packQuantity = 1;
+                                                              Package packages = (Package)pageContext.getAttribute("pack");
+                                                              Promo packagePromo = (Promo)pageContext.getAttribute("promo");
+                                                              List<PackagePackage> packPack = packagePromo.getPackageList();            
+                                                              
+                                                              for(int intCtr = 0; intCtr < packPack.size(); intCtr++){
+                                                                  if(packPack.get(intCtr).getPack().getIntPackageID() == packages.getIntPackageID()){
+                                                                    packChecked = "checked";
+                                                                    packQuantity = packPack.get(intCtr).getIntPackageQuantity();
+                                                                      break;
+                                                                  }
+                                                                  else
+                                                                    continue;
+                                                              }
+                                                          %>
+                                                         <tr>
+                                                           <td><input type="checkbox" name="packagePromoSelect" id="promoPack${pack.intPackageID}${promo.intPromoID}" value="${pack.intPackageID}" <%out.println(packChecked);%>><label for="promoPack${pack.intPackageID}${promo.intPromoID}"></label></td>
+                                                           <td>${pack.strPackageName}</td>
+                                                           <td>${pack.dblPackagePrice}</td>
+                                                           <td><input type="number" name="packagePromoQty" style="width: 75px" min="1" max="99" value="<%=packQuantity%>"></td>
+                                                         </tr>
+                                                        </c:forEach>
+                                                    </table>  
+                                                  </div>
+                                                </div>
+                                            </li>
+                                          </ul>
                                       </div>
                                   </div>
                               </div>
@@ -404,14 +526,18 @@
                           </div>
                           </form>
                     </div>
+                  </c:forEach>
 
-
-                          <div id="delete" class="modal">
+                        <c:forEach items="${promoList}" var="promo">
+                          <div id="delete${promo.intPromoID}" class="modal" style="width: 30% !important; height: 40% !important">
+                          <form method="post" action="deactivatePromo">
                           <div class="container">
                             <div class="modal-content">
                               <div class="row">
+                                <input type="hidden" name="intPromoID" value="${promo.intPromoID}">
                                 <h5 class="red-text">Warning!</h5>
-                                <p>Are you sure?</p>
+                                <p>Are you sure you want to deactivate</p>
+                                <p>${promo.strPromoName}</p>
                               </div>
                             </div>
                               <div class="col s12 center" style="margin-bottom: 30px;">
@@ -419,7 +545,9 @@
                                 <a href="#" class="modal-action modal-close waves-effect waves-light transparent btn-flat black-text">NO</a>
                               </div>
                             </div>
-                      </div>
+                          </form>
+                          </div>
+                        </c:forEach>
 <!--                     <div class="aside aside2 z-depth-barts">
                      
                     </div> -->
@@ -442,9 +570,6 @@
     width: 75% !important;
     height: 80% !important;
     max-height: 100% !important;
-  }
-  #delete {
-    width: 30% !important;
   }
   #viewProdSvc {
     width: 40% !important;

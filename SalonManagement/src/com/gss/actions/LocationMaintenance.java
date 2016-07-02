@@ -1,5 +1,4 @@
 package com.gss.actions;
-
 import java.util.List;
 
 import com.gss.model.Location;

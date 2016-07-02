@@ -20,11 +20,6 @@ public class EmployeeMaintenanceAction {
 		this.empCategory = empService.getAllCategory();
 		this.empList = empService.getAllEmployees();
 		
-//		for(int i = 0; i < empList.size(); i++)	{
-//			System.out.println("<<<<<First Employee>>>>>>");
-//			for(int j = 0; j < empList.get(i).getJobQualification().size(); j++)
-//			System.out.println(empList.get(i).getJobQualification().get(j).getStrJobDesc());
-//		}
 		return "success";
 	}
 

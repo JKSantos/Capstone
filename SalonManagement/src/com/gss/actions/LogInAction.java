@@ -1,31 +1,43 @@
 package com.gss.actions;
 
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
+
 import com.gss.model.Employee;
 import com.gss.service.EmployeeServiceImpl;
+import com.opensymphony.xwork2.ActionSupport;
 
-public class LogInAction {
-	
-	private String strFirstName;
-	private String strLastName;
-	private byte[] bytEmpPhoto;
+public class LogInAction extends ActionSupport implements SessionAware{
+
+	private static final long serialVersionUID = 1L;
 	private String username;
 	private String pass;
+	private Map<String, Object> userSession;
 	
 	public String execute(){
 		
 		EmployeeServiceImpl login = new EmployeeServiceImpl();
 		Employee emp = login.getEmployeeByUserPass(this.username, this.pass);
+		String success = "success";
+		String input = "input";
 		
-		if(username.equals("admin") && pass.equals("admin") )
-			return "success";
-		else if(emp != null){
-			this.strFirstName = emp.getStrEmpFirstName();
-			this.strLastName = emp.getStrEmpLastName();
+		if(userSession.containsKey("firstName") && userSession.containsKey("lastName") && userSession.containsKey("id")){
 			
-			return "success";
+			return success;
+		}
+		
+		if(emp != null){
+			
+			userSession.put("firstName", emp.getStrEmpFirstName());
+			userSession.put("lastName", emp.getStrEmpLastName());
+			userSession.put("id", emp.getIntEmpID());
+			
+			return success;
 		}
 		else
-			return "failed";
+			return input;
+		
 	}
 
 	public String getUsername() {
@@ -44,30 +56,10 @@ public class LogInAction {
 		this.pass = pass;
 	}
 
-	public String getStrFirstName() {
-		return strFirstName;
+	@Override
+	public void setSession(Map<String, Object> session) {
+		
+		this.userSession = session;
 	}
-
-	public void setStrFirstName(String strFirstName) {
-		this.strFirstName = strFirstName;
-	}
-
-	public String getStrLastName() {
-		return strLastName;
-	}
-
-	public void setStrLastName(String strLastName) {
-		this.strLastName = strLastName;
-	}
-
-	public byte[] getBytEmpPhoto() {
-		return bytEmpPhoto;
-	}
-
-	public void setBytEmpPhoto(byte[] bytEmpPhoto) {
-		this.bytEmpPhoto = bytEmpPhoto;
-	}
-
-	
 
 }

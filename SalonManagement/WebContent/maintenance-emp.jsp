@@ -17,6 +17,8 @@
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" type="image/png" href="img/Salon_Icon.ico" />
+    <title>Employees</title>
   </head>
 
 
@@ -46,7 +48,7 @@
                             <ul>
                               <li class="purple lighten-4"><a href="employeeMaintenance">Employee</a></li>
                               <li><a href="productServiceMaintenance">Product & Service</a></li>
-                              <li><a href="catalogueMaintenance">Catalogue</a></li>
+                             
                               <li><a href="packageMaintenance">Package</a></li>
                               <li><a href="locationMaintenance">Delivery Charge</a></li>
                               <li><a href="extraChargeMaintenance">Other Charge</a></li>
@@ -62,7 +64,7 @@
                               <li><a href="transactions-inventory.jsp">Inventory</a></li>
                               <li><a href="transactions-reservation.jsp">Reservation</a></li>
                               <li><a href="transactions-productorder.jsp">Product Order</a></li>
-                              <li><a href="transactions-vip.jsp">VIP</a></li>
+                        
                               <li><a href="transactions-walkin.jsp">Walk In</a></li>
                             </ul>
                           </div>

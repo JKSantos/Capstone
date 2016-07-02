@@ -117,80 +117,96 @@ public class EmployeeJDBCRepository implements EmployeeRepository{
 	@Override
 	public Employee getEmployeeByUserPass(String username, String password) {
 		
-//		String strQuery1 = "CALL loginEmployee(?, ?)";
-//		String strQuery2 = "CALL fetchJob(?)";
-//		JDBCConnection jdbc = new JDBCConnection();
-//		Connection con = jdbc.getConnection();
-//		
-//		Employee emp = null;
-//		int intEmpID;
-//		String strEmpLastName;
-//		String strEmpFirstName;
-//		String strEmpMiddleName;
-//		Date datEmpBirthdate;
-//		String strEmpGender;
-//		String strEmpAddress;
-//		String strEmpContactNo;
-//		String strEmpStatus;
-//		String strEmpUsername;
-//		String strEmpPassword;
-//		String blobEmpPhoto;
-//		byte[] bytActualImage;
-//		List<Job> strJobQualification = new ArrayList<Job>();
-//		
-//		
-//		try{
-//			PreparedStatement pre = con.prepareStatement(strQuery1);
-//			pre.setString(1, username);
-//			pre.setString(2, password);
-//			
-//			ResultSet set = pre.executeQuery();
-//			System.out.print("Checking Account....");
-//			
-//			while(set.next()){
-//				intEmpID = set.getInt(1);
-//				strEmpLastName = set.getString(2);
-//				strEmpFirstName = set.getString(3);
-//				strEmpMiddleName = set.getString(4);
-//				datEmpBirthdate = set.getDate(5);
-//				strEmpGender = set.getString(6);
-//				strEmpAddress = set.getString(7);
-//				strEmpContactNo = set.getString(8);
-//				strEmpStatus = set.getString(9);
-//				strEmpUsername = set.getString(10);
-//				strEmpPassword = set.getString(11);
-//				blobEmpPhoto = "Empty";
-//				bytActualImage = set.getBytes(12);
-//				
-//				emp = new Employee(intEmpID, strEmpLastName, strEmpFirstName, strEmpMiddleName, datEmpBirthdate, strEmpGender, strEmpAddress, strEmpContactNo, strEmpStatus, strEmpUsername, strEmpPassword, blobEmpPhoto, bytActualImage, strJobQualification);
-//				System.out.println("Account found");
-//			
-//			}
-//			
-//			
-//			System.out.print("Fetching jobs....");
-//			
-//			PreparedStatement pre2 = con.prepareStatement(strQuery2);
-//			pre2.setInt(1, emp.getIntEmpID());
-//			ResultSet set2 = pre2.executeQuery();
-//				
-//			while(set2.next()){
-//				Job job = new Job(set2.getString(1), set2.getInt(2));
-//				strJobQualification.add(job);
-//			}
-//			
-//			emp.setStrJobQualification(strJobQualification);
-//			System.out.println("jobs collected");
-//			return emp;
-//		}
-//		catch(SQLException e){
-//			System.out.println(e.getMessage());
-//			return null;
-//		}
-//		catch(NullPointerException a){
-//			return null;
-//		}
-		return null;
+		String strQuery1 = "CALL logInEmployee(?, ?)";
+		String strQuery2 = "CALL fetchJob(?)";
+		JDBCConnection jdbc = new JDBCConnection();
+		Connection con = jdbc.getConnection();
+		
+		Employee emp = null;
+		
+		
+		int intEmpID;
+		String strJobDesc;
+		String strEmpLastName;
+		String strEmpFirstName;
+		String strEmpMiddleName;
+		Date datEmpBirthdate;
+		String strEmpGender;
+		String strEmpAddress;
+		String strEmpContactNo;
+		String strEmpEmail;
+		String strEmpStatus;
+		String strEmpUsername;
+		String strEmpPassword;
+		String blobEmpPhoto;
+		byte[] bytActualImage;
+		Blob imageBlob;
+		
+		try{
+			PreparedStatement st = con.prepareStatement(strQuery1);
+			st.setString(1, username);
+			st.setString(2, password);
+			
+			ResultSet set = st.executeQuery();
+
+			while(set.next()){
+				
+				List<Job> jobs = new ArrayList<Job>(); 
+				intEmpID = set.getInt(1);
+				strEmpLastName = set.getString(2);
+				strEmpFirstName = set.getString(3);
+				strEmpMiddleName = set.getString(4);
+				datEmpBirthdate = set.getDate(5);
+				strEmpGender = set.getString(6);
+				strEmpAddress = set.getString(7);
+				strEmpContactNo = set.getString(8);
+				strEmpEmail = set.getString(9);
+				strEmpStatus = set.getString(10);
+				if(set.getString(11) == null){
+					strEmpUsername = "NO ACCESS";
+					strEmpPassword = "NO ACCESS";	
+				}
+				else
+				{
+					strEmpUsername = set.getString(11);
+					strEmpPassword = set.getString(12);
+				}
+				
+				blobEmpPhoto = "Empty";
+				imageBlob = set.getBlob(13);
+				
+				int blobLength = (int) imageBlob.length();  
+				byte[] blobAsBytes = imageBlob.getBytes(1, blobLength);
+				
+				
+				PreparedStatement getJobs = con.prepareStatement(strQuery2);
+				getJobs.setInt(1, intEmpID);
+				ResultSet jobSet = getJobs.executeQuery();
+				
+				while(jobSet.next()){
+					String jobDesc = jobSet.getString(1);
+					int jobStatus = jobSet.getInt(2);
+					
+					Job job = new Job(jobDesc, jobStatus);
+					jobs.add(job);
+				}
+				
+				emp = new Employee(intEmpID, strEmpLastName, strEmpFirstName, strEmpMiddleName, datEmpBirthdate, strEmpGender, strEmpAddress, strEmpContactNo, strEmpEmail, strEmpStatus, strEmpUsername, strEmpPassword, blobEmpPhoto, blobAsBytes, jobs);
+				
+				
+			}
+			
+			st.close();
+			con.close();
+			
+			return emp;
+		}
+		catch(Exception e){
+			
+			System.out.print(e.getMessage());
+			System.out.print("Null Pointer");
+			return null;
+		}
 		
 	}
 
