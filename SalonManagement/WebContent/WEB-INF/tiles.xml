@@ -17,5 +17,10 @@
       <put-attribute name="title"			value="Inventory"/>
       <put-attribute name="body"			value="/tiles/newBody.jsp"/>
     </definition>
+    
+    <definition name="employeePage" extends="baseLayout">
+      <put-attribute name="title"			value="Employee Maintenance"/>
+      <put-attribute name="body"			value="/tiles/maintenance-emp.jsp"/>
+    </definition>
   
 </tiles-definitions>
