@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
     <link type="text/css" rel="stylesheet" href="css/materialize.css"/>
     <link type="text/css" rel="stylesheet" href="css/mystyle.css"/>
     <link type="text/css" rel="stylesheet" href="css/mtnc-emp.css"/>
@@ -13,6 +14,11 @@
     <%@ taglib uri="/struts-tags" prefix="s" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+=======
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title><tiles:insertAttribute name="title" ignore="true" />
+</title>
+>>>>>>> 5f8434839c4d2ee89c85fea76e2a781d7f7fca59
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
