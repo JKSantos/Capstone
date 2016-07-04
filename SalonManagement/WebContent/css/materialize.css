@@ -3196,11 +3196,11 @@ nav ul a span.badge {
 
 .progress {
   position: relative;
-  height: 4px;
+  height: 18px;
   display: block;
   width: 100%;
-  background-color: #acece6;
-  border-radius: 2px;
+  background-color: #e1bee7;
+  border-radius: 10px;
   margin: 0.5rem 0 1rem 0;
   overflow: hidden;
 }
@@ -9327,8 +9327,8 @@ form p:last-child {
   top: 0px;
   width: 20px;
   height: 20px;
-  border: 2px solid #26a69a;
-  background-color: #26a69a;
+  border: 2px solid purple;
+  background-color: purple;
   z-index: 0;
 }
 

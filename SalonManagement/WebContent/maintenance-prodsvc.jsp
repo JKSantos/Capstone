@@ -64,7 +64,7 @@
                <nav class="z-depth-0">
                  <div class="nav-wrapper purple darken-4">
                    <a href="#!" class="brand-logo purple-text text-lighten-5" style="margin-left: 30px;">Salon Management System</a>
-                 
+
                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                    <ul class="side-nav" id="mobile-demo">
                      <li><a href="admin-home.jsp" class="waves-effect"><b>Home</b></a>

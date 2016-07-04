@@ -61,7 +61,7 @@
                                    <a class="waves-effect waves-orange collapsible-header"><b>Maintenance</b></a>
                                      <div class="collapsible-body">
                                        <ul>
-                                         <li><a href="maintenance-emp.jsp">Employee</a></li>
+                                         <li><a href="tiles/maintenance-emp.jsp">Employee</a></li>
                                          <li><a href="maintenance-prodsvc.jsp">Product & Service</a></li>
                                          <li><a href="maintenance-promo.jsp">Promo</a></li>
                                          <li><a href="maintenance-discount.jsp">Discount</a></li>

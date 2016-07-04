@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <link type="text/css" rel="stylesheet" href="./css/materialize.css"/>
-  <link type="text/css" rel="stylesheet" href="./css/mystyle.css"/>
-  <link type="text/css" rel="stylesheet" href="./css/admin.css"/>
+  <link type="text/css" rel="stylesheet" href="css/materialize.css"/>
+  <link type="text/css" rel="stylesheet" href="css/mystyle.css"/>
+  <link type="text/css" rel="stylesheet" href="css/admin.css"/>
 
-  <link rel="stylesheet" type="text/css" href="./css/drag.css"/>
-  <link rel="stylesheet" type="text/css" href="./css/animate.css"/>
+  <link rel="stylesheet" type="text/css" href="css/drag.css"/>
+  <link rel="stylesheet" type="text/css" href="css/animate.css"/>
 
 <%@ taglib uri="/struts-tags" prefix="s" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -20,7 +20,7 @@
         <header class="headnav">
                         <ul id="slide-out" class="side-nav fixed z-depth-0">
                           <div class="center">
-                              <img src="./img/logo.png" class="circle" style="width: 100%; height: 100%; margin-top: 40px; margin-bottom: 20px;">
+                              <img src="img/logo.png" class="circle" style="width: 100%; height: 100%; margin-top: 40px; margin-bottom: 20px;">
                             </div>
 
                           <li><a href="admin-home.jsp" class="waves-effect"><b>Home</b></a></li>
@@ -69,7 +69,7 @@
                                    <a class="waves-effect waves-orange collapsible-header"><b>Maintenance</b></a>
                                      <div class="collapsible-body">
                                        <ul>
-                                         <li><a href="maintenance-emp.jsp">Employee</a></li>
+                                         <li><a href="tiles/maintenance-emp.jsp">Employee</a></li>
                                          <li><a href="maintenance-prodsvc.jsp">Product & Service</a></li>
                                          <li><a href="maintenance-promo.jsp">Promo</a></li>
                                          <li><a href="maintenance-discount.jsp">Discount</a></li>
@@ -282,9 +282,9 @@
     
 
   <!--Import jQuery before materialize.js-->
-    <script type="text/javascript" src="./js/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="./js/materialize.min.js"></script>
-    <script type="text/javascript" src="./js/drag.js"></script>
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/drag.js"></script>
     
     <script type="text/javascript">
       $( document ).ready(function(){
